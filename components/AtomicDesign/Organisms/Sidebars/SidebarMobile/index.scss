@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+   .sidebar-mobile {
+    @apply absolute inset-0 z-50 bg-white shadow-lg animate-in slide-in-from-left-96;
+   }
+
+   .sidebar-mobile__container {
+      @apply relative h-full flex flex-col items-center justify-between gap-[33px] px-[35px] py-[27px];
+   }
+
+   .sidebar-mobile__menu {
+      @apply h-full flex flex-col items-center;
+   }
+
+   .smenu-mobile__item {
+      @apply w-full h-12 text-primary-darkBlack hover:text-primary;
+   }
+
+}

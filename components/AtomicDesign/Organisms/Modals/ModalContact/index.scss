@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+
+    .modal-contact__container {
+        @apply mx-auto w-11/12 animate-in slide-in-from-top-5 py-10 md:py-20;
+    }
+
+    .modal-contact__container--circle {
+        @apply flex flex-col md:flex-row gap-2 items-center justify-center md:justify-between;
+    }
+
+    .modal-contact__icon-button {
+        @apply h-28 w-28 bg-secondary-gray hover:bg-primary transition-all duration-150 ease-in-out rounded-full hover:shadow-xl hover:animate-pulse border border-secondary-gray flex items-center justify-center overflow-hidden text-5xl;
+    }
+
+    .modal-contact__container--dropdown {
+        @apply mx-auto w-11/12 flex flex-col justify-between gap-10;
+    }
+
+}

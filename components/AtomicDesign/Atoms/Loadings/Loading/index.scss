@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .loading {
+        @apply absolute inset-0 z-40 flex items-center justify-center;
+    }
+
+    .loading__container {
+        @apply bg-white flex flex-col items-center justify-center shadow rounded-xl px-10 py-5;
+    }
+
+    .loading__image {
+        @apply relative bg-primary-darkBlack h-12 w-12 rounded-[10px] animate-bounce shadow;
+    }
+
+    .loading__title {
+        @apply font-montserrat font-semibold text-xl md:text-xl tracking-widest animate-pulse;
+    }
+}

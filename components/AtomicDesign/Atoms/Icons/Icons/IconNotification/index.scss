@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    .icon-notification {
+        @apply relative flex items-center justify-center;
+    }
+   
+    .icon-notification__circle {
+        @apply absolute -top-1 -right-1 z-10 bg-white w-fit;
+    }
+
+    .icon-notification__count {
+        @apply h-full w-fit bg-primary rounded-full shadow-lg flex items-center justify-center text-[9px] text-white font-montserrat font-bold px-[5px];
+    }
+
+    .icon-notification__icon {
+        @apply text-3xl;
+    }
+}

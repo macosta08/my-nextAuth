@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .button-tab {
+        @apply flex items-center justify-center whitespace-pre-wrap gap-3 border-b-2 h-[48px] px-5;
+    }
+
+    .button-tab__text {
+        @apply w-16 md:w-full text-primary-grayish font-montserrat font-normal text-sm md:text-base text-center md:text-left capitalize ;
+    }
+
+    .button-tab__text--active {
+        @apply text-primary font-semibold animate-in slide-in-from-left-20;
+    }
+
+}

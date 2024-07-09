@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .dataRepeater-header {
+        @apply flex mb-2 bg-[#8399A6] text-sm font-montserrat items-center text-center text-white whitespace-nowrap h-[50px] border-collapse px-3;
+      }
+    
+      .renderFields-container {
+        @apply rounded-lg flex mb-2 min-w-fit max-w-60 text-sm font-montserrat items-center text-center whitespace-nowrap h-[50px] border-collapse px-5;
+      }
+    
+      .dataRepeater-iconButton {
+        @apply text-2xl text-primary-darkBlack;
+      }
+    
+      
+
+  
+}

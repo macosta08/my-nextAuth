@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+   .button-icon-table {
+      @apply h-9 w-9 text-sm;
+   }
+
+   .button-icon-table__icon {
+      @apply text-base md:text-lg;
+   }
+
+
+   .table__icon-button--active {
+      @apply text-primary hover:text-primary text-3xl animate-pulse;
+   }
+
+}

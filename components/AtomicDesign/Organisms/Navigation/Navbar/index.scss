@@ -1,0 +1,19 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+   .navbar {
+    @apply h-[59px] md:h-[72px] border-b-2 shadow-md;
+   }
+
+   .navbar__container {
+    @apply h-full mx-auto w-[95%] md:w-[98%] max-w-[1880px] grid grid-cols-12 items-center gap-2 py-[3px] md:py-[9px];
+   }
+
+   .navbar__column {
+      @apply h-full md:col-span-6 flex items-center;
+   }
+
+}

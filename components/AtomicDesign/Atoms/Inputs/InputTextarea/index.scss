@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    
+  .textarea {
+    @apply w-full min-h-20  md:max-w-[400px] shadow-sm rounded-[10px] border-b border-b-primary-darkBlack focus:outline-none focus:border-b-primary placeholder:text-xs placeholder:text-primary-grayish md:placeholder:text-sm text-primary-darkBlack p-3 disabled:input-disabled resize-none;
+  }
+}

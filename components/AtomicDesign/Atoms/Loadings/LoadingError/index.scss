@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .loading-error {
+        @apply h-full flex flex-col items-center justify-center animate-in slide-in-from-top-48 ease-in-out duration-700;
+    }
+
+    .loading-error__icon {
+        @apply text-9xl md:text-[200px] text-gray-300 animate-pulse;
+    }
+
+    .loading-error__container {
+        @apply font-montserrat text-center text-primary-darkBlack space-y-10 p-5;
+    }
+
+    .loading-error__title {
+        @apply font-bold text-base md:text-3xl;
+    }
+}

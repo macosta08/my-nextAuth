@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .chartCircle-progressbar {
+        @apply flex flex-col items-center justify-center gap-3 font-montserrat;
+    }
+
+    .chartCircle-progressbar__title {
+        @apply font-montserrat font-bold text-sm max-w-xs whitespace-pre-line;
+    }
+}

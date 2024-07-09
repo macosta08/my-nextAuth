@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .menu-contextual-table__item {
+        @apply text-xs md:text-sm flex gap-2 items-center hover:bg-primary hover:animate-pulse ease-in-out duration-150 py-2 px-5;
+    }
+    .menu-contextual-table__icon {
+        @apply text-base md:text-xl text-primary-darkBlack;
+    }
+}

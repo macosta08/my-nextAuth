@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .home {
+        @apply w-11/12 max-w-[1880px] grid grid-cols-1 md:grid-cols-5 gap-5 py-2 overflow-hidden;
+    }
+
+    .home__title {
+        @apply text-primary-darkBlack text-lg md:text-xl;
+    }
+
+    .home-engineer__cards-weekly {
+        @apply h-fit flex flex-col gap-5;
+    }
+}

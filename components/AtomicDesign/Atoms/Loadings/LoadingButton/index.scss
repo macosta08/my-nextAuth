@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .loading-button {
+        @apply w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-primary-grayish;
+    }
+}
+

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .pagination {
+        @apply flex justify-center items-center gap-5;
+    }    
+
+    .pagination__pages {
+        @apply flex max-w-96 items-center overflow-auto;
+    }
+
+    .pagination__button {
+        @apply h-8 w-8 flex items-center justify-center rounded-[8px] text-xs font-semibold border-2 focus:outline-none;
+    }
+
+    .pagination__button--active {
+        @apply bg-primary text-white border-primary hover:animate-pulse;
+    }
+
+    .pagination__button--inactive {
+        @apply hover:bg-secondary-gray text-primary-darkBlack border-secondary-gray;
+    }
+
+   /*  ButtonsPrevNext */
+    .pagination__prevnext {
+        @apply disabled:opacity-50 disabled:hover:text-primary-darkBlack disabled:cursor-not-allowed font-semibold text-sm text-primary-darkBlack hover:text-primary;
+    }
+}

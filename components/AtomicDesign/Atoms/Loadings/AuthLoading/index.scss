@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .wrapper__auth-loading  {
+        @apply absolute inset-0 backdrop-blur-sm flex items-center justify-center animate-in slide-out-to-left-96;
+    }
+
+    .auth-loading {
+        @apply mx-auto w-11/12 flex flex-col md:flex-row items-center justify-center gap-3;
+    }
+
+    .auth-loading__image {
+        @apply relative bg-primary-darkBlack h-12 w-12 rounded-[10px];
+    }
+
+    .auth-loading__content {
+        @apply md:border-l md:pl-2 flex flex-col items-center md:items-start;
+    }
+
+    .auth-loading__title {
+        @apply font-montserrat font-semibold text-xl md:text-3xl tracking-widest;
+    }
+
+    .auth-loading__text {
+        @apply text-sm md:text-base font-montserrat font-normal tracking-widest;
+    }
+}

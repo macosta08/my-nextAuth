@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .modal-wrapper__popup {
+    @apply flex items-center justify-center p-2;
+  }
+
+  .popup {
+    @apply w-full md:max-w-sm max-h-[179px];
+  }
+
+  .action-modal__container {
+    @apply flex flex-col items-center justify-center gap-5;
+  }
+
+  .action-modal__text {
+    @apply text-primary-darkBlack text-center text-xs md:text-sm px-14;
+  }
+
+  .action-modal__container--button {
+    @apply w-full flex justify-center items-center gap-5 md:gap-8;
+  }
+}

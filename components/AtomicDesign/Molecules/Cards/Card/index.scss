@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .card {
+        @apply h-full w-full bg-white md:hover:bg-yellow-50/60 shadow-md rounded-[10px] cursor-pointer overflow-hidden;
+    }
+
+    .card__content {
+        @apply space-y-2 p-2 mx-auto w-[95%];
+    }
+}

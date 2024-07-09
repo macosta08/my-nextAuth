@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .button-icon {
+    @apply h-12 w-12 bg-primary hover:bg-[#F0D882] rounded-[10px] flex justify-center items-center text-2xl text-white;
+  }
+
+  .button__icon-table {
+    @apply h-8 w-8 bg-primary hover:bg-[#F0D882] rounded-[10px] flex justify-center items-center text-lg text-white;
+  }
+
+  .button__icon-transparent {
+    @apply h-8 w-8 bg-transparent flex justify-center items-center hover:scale-105;
+  }
+
+  .button__icon-table-action {
+    @apply h-8 w-8 bg-transparent text-gray-500 hover:text-[#F0D882] hover:bg-transparent;
+  }
+
+  .button__icon-black {
+    @apply text-primary-darkBlack;
+  }
+
+  .button__icon-darkGray{
+    @apply bg-secondary-lightGrayBlue;
+  }
+
+  .button-icon__notification {
+    @apply absolute h-4 w-4 bg-primary-grayish rounded-full -top-1 -right-1 flex items-center justify-center shadow-md animate-pulse;
+  }
+
+}

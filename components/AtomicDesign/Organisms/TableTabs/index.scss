@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .tabs {
+        @apply sticky top-0 right-0 z-30 bg-white;
+    }
+
+    .tabs__tab {
+        @apply flex items-center;
+    }
+    
+}

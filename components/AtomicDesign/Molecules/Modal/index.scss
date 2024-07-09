@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .modal__button {
+    @apply flex items-center justify-end;
+  }
+
+  .modal__icon {
+    @apply text-base md:text-lg text-primary-darkBlack hover:text-primary transition ease-in-out duration-100;
+  }
+
+  .modal--loading {
+    @apply fixed inset-0 bg-white/10 flex items-center justify-center  backdrop-blur-sm z-10;
+  }
+
+  .modal__icon--loading {
+    @apply text-6xl text-primary-grayish;
+  }
+
+}

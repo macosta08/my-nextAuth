@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+   .sidebar {
+    @apply absolute z-50 h-full bg-primary-darkBlack rounded-r-[20px] shadow-lg shadow-primary-grayish cursor-pointer;
+   }
+
+   .sidebar__container {
+      @apply h-full py-[43px] px-[18px] flex flex-col items-center justify-between gap-3;
+   }
+
+   .sidebar__menu {
+      @apply h-full flex flex-col items-center justify-between;
+   }
+
+   .s-menu__item {
+      @apply w-full flex items-center gap-3 rounded-[10px] h-10;
+   }
+
+}

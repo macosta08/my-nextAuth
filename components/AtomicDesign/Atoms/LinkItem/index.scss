@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .link-item {
+        @apply h-full w-full flex items-center gap-2 text-white font-montserrat font-normal hover:text-primary px-2;
+    }
+
+    .link-item--activated {
+        @apply font-bold hover:text-white animate-pulse;
+    }
+}

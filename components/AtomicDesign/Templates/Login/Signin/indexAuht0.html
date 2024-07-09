@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Derick development | Login</title>
+    <link rel="shortcut icon" href="https://derick-public-dev.s3.amazonaws.com/logos/favicons/favicon.ico" type="image/x-icon" />
+    <!-- Implementation of iconify design as a source for icons -->
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <!-- styles-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        /* 
+        ------------------------------------------
+        Animations
+        ------------------------------------------ */
+        /** shake-horizontal */
+        @-webkit-keyframes shake-horizontal {
+
+            0%,
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70% {
+                -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+            }
+
+            80% {
+                -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+            }
+
+            90% {
+                -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+            }
+        }
+
+        @keyframes shake-horizontal {
+
+            0%,
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70% {
+                -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+            }
+
+            80% {
+                -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+            }
+
+            90% {
+                -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+            }
+        }
+
+        /** fade-in-bottom */
+        @-webkit-keyframes fade-in-bottom {
+            0% {
+                -webkit-transform: translateY(50px);
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in-bottom {
+            0% {
+                -webkit-transform: translateY(50px);
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /** fade-in-right */
+        @-webkit-keyframes fade-in-right {
+            0% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in-right {
+            0% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Global variables */
+        :root {
+            /* Main colors */
+            --color-primary: #f7d145;
+            --color-primary-dark-grayish-blue: #2a2e32;
+            --color-vivid-orange: #f08d14;
+            --color-grayish-blue: #707275;
+
+            --color-secondary: #23d163;
+            --color-secondary-bright-red: #e83a30;
+            --color-secondary-soft-blue: #5e61e8;
+            --color-secondary-light-gray: #f0f2f5;
+
+
+            /* Official typography */
+            --fontPrimary: 'montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            font-size: 16px;
+            font-family: var(--fontPrimary);
+        }
+
+        /* Standard components (global) */
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            font-family: var(--color-primary);
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .text {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--color-primary);
+        }
+
+        .icon {
+            font-size: 25px;
+            text-decoration: none;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .logo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button {
+            width: 100%;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 13px 24px;
+            border-radius: 10px;
+            background-color: var(--color-primary);
+            border: none;
+            font-family: var(--fontPrimary);
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.4rem;
+            position: relative;
+        }
+
+        .button:hover {
+            background-color: #F0D882;
+            cursor: pointer;
+        }
+
+        .button__text {
+            display: block;
+        }
+
+        .toast {
+            width: 400px;
+            max-width: 450px;
+            height: max-content;
+            background-color: #FFFFFFE5;
+            padding: 8px 13px;
+            border: none;
+            -webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            box-shadow: 5px 0 0 0 rgba(0, 0, 0, 1);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 1rem;
+            right: 0.5rem;
+            z-index: 999;
+        }
+
+        .toast-error {
+            display: none;
+        }
+
+        .toast__title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-primary-dark-grayish-blue);
+            text-transform: uppercase;
+        }
+
+        .text__toast {
+            font-size: 12px;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .button__toast {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .button__icon {
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            color: var(--color-secondary-bright-red);
+        }
+
+        .toast__content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast__icon {
+            font-size: 40px;
+            color: var(--color-secondary-bright-red);
+        }
+
+        .animation__error {
+            -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+            animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        }
+
+
+        /* Start login*/
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('https://derick-public-dev.s3.amazonaws.com/generals/background-tools.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .alert {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+            position: absolute;
+            background: #ffffff21;
+            backdrop-filter: blur(10px);
+            inset: 0;
+        }
+
+        .alert__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: .5rem;
+            gap: .5rem;
+        }
+
+        .alert__container--image {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--color-primary-dark-grayish-blue);
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .alert__container--text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text--alert {
+            font-size: .8rem;
+            text-align: center;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .main {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            position: absolute;
+            inset: 0;
+            padding: 30px 75px;
+            background: #ffffff40;
+        }
+
+        .forms {
+            width: 100%;
+            max-width: 686px;
+            height: 100%;
+            max-height: 885px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 26px;
+            background-color: #FFFFFFE5;
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            -webkit-box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            overflow: hidden;
+        }
+
+        .icon--back {
+            visibility: collapse;
+        }
+
+        .active {
+            visibility: visible;
+        }
+
+        .forms__logo {
+            width: 50%;
+            max-width: 529px;
+            height: 130px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .forms__form {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .title--different-color {
+            color: var(--color-primary);
+        }
+
+        .title--medium {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .form {
+            height: 80%;
+            flex-direction: column;
+            gap: 15%;
+        }
+
+        .forms__headers {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form__container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form__container--input-link {
+            gap: 10px;
+        }
+
+        /* Deshabilitar por defecto funciones de input tipo password en navegadores */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+
+        .form__input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form__input--label {
+            font-weight: 600;
+            color: var(--color-primary-dark-grayish-blue);
+            font-size: 16px;
+        }
+
+        .form__input--field {
+            width: 100%;
+            height: 48px;
+            position: relative;
+        }
+
+        .form__input--field input {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem 0 .8rem;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid var(--color-grayish-blue);
+            border-radius: 10px;
+            font-family: var(--fontPrimary);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-primary-dark-grayish-blue);
+            position: absolute;
+        }
+
+        .form__input--field input::placeholder {
+            font-size: 14px;
+            color: var(--color-grayish-blue);
+        }
+
+        .form__input--field input:focus {
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .icon__input--field {
+            margin-left: 90%;
+            font-size: 22px;
+            color: var(--color-grayish-blue);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .icon__input--field:hover {
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .disable-password-icon {
+            display: none;
+        }
+
+        .form__link {
+            display: flex;
+            justify-content: end;
+        }
+
+        .text--link {
+            color: var(--color-primary-dark-grayish-blue);
+            cursor: pointer;
+        }
+
+        .text--link:hover {
+            color: var(--color-primary);
+        }
+
+        .form__button {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .icon--spiner {
+            display: none;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Individual styles forms  */
+        /* Headers*/
+        .forms__headers--signin {
+            display: flex;
+        }
+
+        .forms__headers--recovery {
+            display: none;
+        }
+
+        .forms__headers--verify {
+            display: none;
+        }
+
+        /* Forms*/
+        .form-signin {
+            display: flex;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        .form-recovery {
+            display: none;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        .form-verify {
+            display: none;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        /* Form containers*/
+        .form__container--recovery {
+            justify-content: center;
+        }
+
+        .form__container--verify {
+            align-items: center;
+        }
+
+        /* Form elements*/
+        .text--verify-email {
+            font-weight: 700;
+            color: var(--color-primary-dark-grayish-blue);
+            font-style: italic;
+        }
+
+        .text--verify {
+            font-weight: 400;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        @media screen and (max-width: 350px) {
+            .alert {
+                display: flex;
+            }
+
+            .main {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 351px) and (max-width: 757px) {
+            html {
+                font-size: 12px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .title--medium {
+                font-size: 16px;
+            }
+
+            .text {
+                font-size: 12px;
+            }
+
+            .toast__title {
+                font-size: 10px;
+            }
+
+            .toast__icon {
+                font-size: 30px;
+            }
+
+            .main {
+                align-items: center;
+                justify-content: center;
+                padding: 35px 24px;
+            }
+
+            .forms {
+                padding: 20px;
+                max-height: 638px;
+            }
+
+            .forms__logo {
+                width: 190px;
+                height: 120px;
+            }
+
+            .forms__headers {
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .form__input--label {
+                font-size: 12px;
+            }
+
+            .form__container--input {
+                gap: 5px;
+            }
+
+            .form__input--field input::placeholder {
+                font-size: 12px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Start toast error-->
+        <div class="toast toast-error" id="toast_error">
+            <div class="button__toast">
+                <h1 class="title toast__title">Notification</h1>
+                <a href="#" class="button__icon button__icon--error" id="toast_button__close">
+                    <span class="iconify" data-icon="bi:x-circle"></span>
+                </a>
+            </div>
+            <div class="toast__content">
+                <span class="iconify toast__icon" data-icon="akar-icons:chat-error"></span>
+                <p class="text text__toast" id="text_error"></p>
+            </div>
+        </div>
+        <!-- End toast error-->
+        <!--Container visible only for screen smaller than 258px-->
+        <div class="alert">
+            <div class="alert__container animation__error">
+                <div class="alert__container--image">
+                    <img class="logo" src="https://derick-public-dev.s3.amazonaws.com/logos/iso-zoom-white.png" alt="logo" />
+                </div>
+                <div class="alert__container--text">
+                    <h1 class="title">Attention</h1>
+                    <p class="text text--alert">
+                        Your device is not compatible with this version, sorry for the
+                        inconvenience.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Container visible only for screens larger than 1024px-->
+        <main class="main">
+            <!---Box forms-->
+            <div class="forms" id="forms">
+                <!-- Header-->
+                <div>
+                    <a class="icon icon--back" id="icon_back" href="">
+                        <span class="iconify" data-icon="fluent:ios-arrow-24-filled"></span></a>
+                    <div class="forms__logo">
+                        <img class="logo" src="https://derick-public-dev.s3.amazonaws.com/logos/logo-zoom-blue-dark.png" alt="Official logo" srcset="">
+                    </div>
+                </div>
+                <!-- Form-->
+                <div class="forms__form">
+                    <div class="forms__headers">
+                        <!-- Form headers signin  -->
+                        <div class="forms__headers forms__headers--signin" id="headers_signin">
+                            <h1 class="title">Welcome <span class="title title--different-color">back</span></h1>
+                            <h3 class="title title--medium">Sign in</h3>
+                        </div>
+                        <!-- Form headers recovery -->
+                        <div class="forms__headers forms__headers--recovery" id="headers_recovery">
+                            <h1 class="title">Reset <span class="title title--different-color">password</span></h1>
+                            <h3 class="title title--medium">Enter your email to reset it</h3>
+                        </div>
+                        <!-- Form headers verify -->
+                        <div class="forms__headers forms__headers--verify" id="headers_verify">
+                            <h1 class="title">Verify your <span class="title title--different-color">email</span></h1>
+                        </div>
+                    </div>
+                    <!-- Start form signin-->
+                    <form class="form form-signin" id="form_signin">
+                        <div class="form__container">
+                            <!-- Input form 1-->
+                            <div class="form__input">
+                                <label class="form__input--label">E-mail</label>
+                                <div class="form__input--field">
+                                    <input type="text" id="input_email" name="emailSignin" placeholder="E-mail address"
+                                        autocomplete="off" />
+                                </div>
+                            </div>
+                            <!-- Input form 2-->
+                            <div class="form__container form__container--input-link">
+                                <div class="form__input">
+                                    <label class="form__input--label">Password</label>
+                                    <div class="form__input--field">
+                                        <input type="password" id="input_password" name="inputPassword"
+                                            placeholder="Password" autocomplete="off" />
+                                        <span class="iconify icon__input--field" id="show_password"
+                                            data-icon="mdi:eye-outline"></span>
+                                        <span class="iconify icon__input--field disable-password-icon"
+                                            id="hide_password" data-icon="mdi:eye-off"></span>
+                                    </div>
+                                </div>
+                                <!-- Link recovery -->
+                                <div class="form__link">
+                                    <a href="#" id="go_recovery" class="text text--link">Forgot password?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Signin in button -->
+                        <div class="form__button">
+                            <button type="button" id="btn_signin" class="button">
+                                <span class="button__text" id="button_text_signin">Login</span>
+                                <span class="iconify icon icon--spiner" id="icon_loading"
+                                    data-icon="svg-spinners:ring-resize"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <!-- End form signin -->
+                    <!-- Start form recovery-->
+                    <form class="form form-recovery" id="form_recovery">
+                        <div class="form__container form__container--recovery">
+                            <!-- Input form 1-->
+                            <div class="form__input">
+                                <label class="form__input--label">Enter your e-mail address</label>
+                                <div class="form__input--field">
+                                    <input type="text" id="input_email_recovery" name="emailRecovery"
+                                        placeholder="E-mail address" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recovery in button -->
+                        <div class="form__button">
+                            <button type="button" class="button" id="btn_send">
+                                Send
+                                <!-- <span class="iconify icon icon--spiner" id=""
+                                data-icon="svg-spinners:ring-resize"></span> -->
+                            </button>
+                        </div>
+                    </form>
+                    <!-- End form recovery -->
+                    <!-- Start form verify-->
+                    <form class="form form-verify" id="form_verify">
+                        <div class="form__container form__container--verify">
+                            <h3 class="title title--medium">We have sent a message to reset your password to the
+                                following email:</h3>
+                            <p class="text text--verify-email" id="view_email__recovery"></p>
+                        </div>
+                        <!-- Verify in button -->
+                        <div class="form__button">
+                            <p class="text text--verify">I did not receive the email, Click to resend</p>
+                            <button type="button" id="btn_resend" class="button">
+                                Resend
+                                <!-- <span class="iconify icon icon--spiner" id=""
+                                data-icon="svg-spinners:ring-resize"></span> -->
+                            </button>
+                        </div>
+                    </form>
+                    <!-- End form verify -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Auth0 script implementation -->
+    <script src="https://cdn.auth0.com/js/auth0/9.16/auth0.min.js"></script>
+    <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            // Auth configuration !Important
+            var config = JSON.parse(
+                decodeURIComponent(escape(window.atob('@@config@@')))
+            );
+
+            if (config && 'internalOptions' in config) {
+                var leeway = config.internalOptions.leeway;
+                if (leeway) {
+                    var convertedLeeway = parseInt(leeway);
+                    if (!isNaN(convertedLeeway)) {
+                        config.internalOptions.leeway = convertedLeeway;
+                    }
+                }
+            }
+            var params = Object.assign(
+                {
+                    overrides: {
+                        __tenant: config.auth0Tenant,
+                        __token_issuer: config.authorizationServer.issuer,
+                    },
+                    domain: config.auth0Domain,
+                    clientID: config.clientID,
+                    redirectUri: config.callbackURL,
+                    responseType: 'code',
+                },
+                config.internalOptions
+            );
+            var webAuth = new auth0.WebAuth(params);
+            var databaseConnection = 'Username-Password-Authentication';
+
+            // --- Enable/disable headers
+            const headersSignin = document.getElementById('headers_signin');
+            const headersRecovery = document.getElementById('headers_recovery');
+            const headersVerify = document.getElementById('headers_verify');
+
+            // --- Enable/disable forms
+            const forms = document.getElementById('forms');
+            const formSignin = document.getElementById('form_signin');
+            const formRecovery = document.getElementById('form_recovery');
+            const formVerify = document.getElementById('form_verify');
+
+
+            // --- Links
+            const activeIconBack = document.getElementById('icon_back');
+            const goRecoveryForm = document.getElementById('go_recovery');
+
+            // Toast
+            const activeToast = document.getElementById('toast_error');
+            const toastTextError = document.getElementById('text_error');
+
+            // General
+            const buttonTextSignin = document.getElementById('button_text_signin');
+            const loading = document.getElementById('icon_loading');
+
+
+
+            /* Eventos */
+            // LInk go to form recovery
+            goRecoveryForm.addEventListener('click', function (e) {
+                e.preventDefault();
+                headersSignin.style.display = 'none';
+                formSignin.style.display = 'none';
+                headersRecovery.style.display = 'flex';
+                formRecovery.style.display = 'flex';
+                // Agregar una clase al elemento cuando se activa el evento
+                activeIconBack.classList.add('active');
+            });
+
+
+            // Hidden|view password inputs
+            const inputFielPassword = document.querySelector('#input_password');
+            const showPassword = document.querySelector('#show_password');
+            const hidePassword = document.querySelector('#hide_password');
+
+            showPassword.addEventListener('click', function () {
+                inputFielPassword.type = 'text';
+                showPassword.style.display = 'none';
+                hidePassword.style.display = 'block';
+            });
+
+            hidePassword.addEventListener('click', function () {
+                inputFielPassword.type = 'password';
+                showPassword.style.display = 'block';
+                hidePassword.style.display = 'none';
+            });
+
+            // Active
+            const toast = text => {
+                activeToast.style.display = 'block';
+                forms.classList.add('animation__error');
+                toastTextError.innerHTML = text;
+                setTimeout(() => {
+                    activeToast.style.display = 'none';
+                    forms.classList.remove('animation__error');
+                }, 3000);
+            }
+
+            // Active check box
+            const finalizeRequest = () => {
+                let emailRecovery = document.getElementById('input_email_recovery').value;
+                let emailVerify = document.getElementById('view_email__recovery');
+
+                headersRecovery.style.display = 'none';
+                formRecovery.style.display = 'none';
+                headersVerify.style.display = 'flex';
+                formVerify.style.display = 'flex';
+                emailVerify.innerHTML = emailRecovery;
+
+                setTimeout(() => {
+                    window.location.href = '';
+                }, 10000);
+            };
+
+            // Implementation expressions regular
+            var emailRegex =
+                /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+            // Configuration de buttons formulation
+            // Star session
+            function signIn(e) {
+                e.preventDefault();
+                var button = this;
+                let username = document.getElementById('input_email').value;
+                let password = document.getElementById('input_password').value;
+
+                if (!username || !password) {
+                    toast('One or more fields are empty.');
+                    return;
+                }
+
+                // Validation de inpus form
+                if (!emailRegex.exec(username)) {
+                    toast(
+                        "Invalid email address! Include an '@' in the address."
+                    );
+                    return;
+                }
+
+                buttonTextSignin.style.display = 'none';
+                loading.style.display = 'block';
+                button.disabled = true;
+
+                if (emailRegex.exec(username)) {
+                    webAuth.login(
+                        {
+                            realm: databaseConnection,
+                            username: username,
+                            password: password,
+                        },
+                        function (err) {
+                            // Restaurar el estado del botón y ocultar el indicador de carga
+                            buttonTextSignin.style.display = 'block';
+                            loading.style.display = 'none';
+                            button.disabled = false;
+                            if (err) {
+                                toast('Invalid session! Incorrect user or password.');
+                                return;
+                            }
+                        }
+                    );
+                }
+            }
+
+            // Forgot password request
+            function sendRequestResetPassword(e) {
+                e.preventDefault();
+                let email = document.getElementById('input_email_recovery').value;
+
+                // Validación de correo y contraseña vacíos
+                if (
+                    email == null ||
+                    email.length == 0
+                ) {
+                    toast('One or more fields are empty.');
+                    return;
+                }
+
+                // Validación de formato de correo electrónico
+                // Validation de inpus form
+                if (!emailRegex.test(email)) {
+                    toast(
+                        "Invalid email address! Include an '@' in the address."
+                    );
+                    return;
+                }
+
+                webAuth.changePassword(
+                    {
+                        connection: databaseConnection,
+                        email: email,
+                    },
+                    function (err) {
+                        if (err) {
+                            toast('Invalid application, please try again.');
+                        } else {
+                            finalizeRequest();
+                            button.disabled = true;
+                        }
+                    }
+                );
+            }
+
+            function reSendRequestResetPassword(e) {
+                var email = document.getElementById('input_email_recovery').value;
+                webAuth.changePassword(
+                    {
+                        connection: databaseConnection,
+                        email: email,
+                    },
+                    function (err) {
+                        if (err) {
+                        } else {
+                            toast(
+                                'We have resubmitted your reset request.'
+                            );
+                            button.disabled = true;
+                        }
+                    }
+                );
+            }
+
+            // Add events buttons
+            const buttonSignin = document.getElementById('btn_signin');
+            buttonSignin.addEventListener('click', signIn);
+
+            const buttonSendRequestResetPassword = document.getElementById('btn_send');
+            buttonSendRequestResetPassword.addEventListener('click', sendRequestResetPassword);
+
+            const buttonReSendRequestResetPassword = document.getElementById('btn_resend');
+            buttonReSendRequestResetPassword.addEventListener('click', reSendRequestResetPassword);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .input-check {
+        @apply flex items-center gap-3;
+    }
+
+    .input-check__label {
+        @apply text-xs md:text-base text-primary-darkBlack font-normal font-montserrat capitalize;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        border: 3px solid #6670804D;
+        border-radius: 50%;
+        outline: none;
+        /* Quita el contorno predeterminado */
+        cursor: pointer;
+        position: relative;
+    }
+
+    /* Estilos para el estado seleccionado */
+    input[type="checkbox"]:checked {
+        background-color: #667080;
+        /* Color cuando está seleccionado */
+    }
+
+    input[type="radio"]:checked {
+        background-color: transparent;
+        /* Color cuando está seleccionado */
+    }
+
+    /* Estilos para el check central para el checkbox */
+    input[type="checkbox"]::after {
+        /* Unicode para el icono de verificación */
+        content: '\2713';
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        padding: 2px;
+        display: none;
+    }
+
+    /* Estilos para el punto central en radio */
+    input[type="radio"]::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 15px;
+        height: 15px;
+        background-color: #667080;
+        border-radius: 50%;
+        display: none;
+    }
+
+
+    /* Estilos para el punto central cuando está seleccionado */
+    input[type="checkbox"]:checked::after,
+    input[type="radio"]:checked::after {
+        display: block;
+    }
+}

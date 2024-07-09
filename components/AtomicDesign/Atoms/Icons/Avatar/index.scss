@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    .avatar {
+        @apply relative h-12 w-12 rounded-full border shadow-sm overflow-hidden;
+    }
+
+    .avatar__src-empty {
+        @apply absolute inset-0 bg-primary-darkBlack flex items-center justify-center;
+    }
+
+    .avatar__text {
+        @apply font-montserrat font-semibold text-white text-sm uppercase;
+    }
+}

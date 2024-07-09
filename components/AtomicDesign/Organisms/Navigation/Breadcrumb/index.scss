@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    .breadcrumb {
+        @apply flex items-center gap-3;
+    }
+
+    .breadcrumb__button {
+        @apply text-3xl text-primary hover:text-primary-darkBlack;
+    }
+
+    .breadcrumb__text {
+        @apply text-primary-darkBlack text-sm font-medium capitalize;
+    }
+
+    .breadcrumb__paths {
+        @apply flex flex-wrap items-center gap-1;
+    }
+
+    .breadcrumb__text--paths {
+        @apply text-primary hover:text-primary-darkBlack animate-in slide-in-from-left-5;
+    }
+
+    .breadcrumb__separator {
+        @apply text-[#57575680] text-sm pl-1;
+    }
+}

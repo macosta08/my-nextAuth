@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .card-a {
+        @apply border bg-gradient-to-br from-white from-10% via-white to-gray-400 hover:via-gray-50 hover:to-gray-500;
+    }
+
+    .card-a__content {
+        @apply h-full flex items-center justify-center;
+    }
+
+    .card-a__text {
+        @apply font-montserrat font-bold text-center text-xl;
+    }
+}

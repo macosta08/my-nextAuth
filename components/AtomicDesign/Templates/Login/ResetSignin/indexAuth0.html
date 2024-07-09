@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Derick development | Reset password</title>
+    <link rel="shortcut icon" href="https://derick-public-dev.s3.amazonaws.com/logos/favicons/favicon.ico" type="image/x-icon" />
+    <!-- Implementation of iconify design as a source for icons -->
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <!-- styles-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        /* 
+        ------------------------------------------
+        Animations
+        ------------------------------------------ */
+        /** shake-horizontal */
+        @-webkit-keyframes shake-horizontal {
+
+            0%,
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70% {
+                -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+            }
+
+            80% {
+                -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+            }
+
+            90% {
+                -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+            }
+        }
+
+        @keyframes shake-horizontal {
+
+            0%,
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70% {
+                -webkit-transform: translateX(-10px);
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60% {
+                -webkit-transform: translateX(10px);
+                transform: translateX(10px);
+            }
+
+            80% {
+                -webkit-transform: translateX(8px);
+                transform: translateX(8px);
+            }
+
+            90% {
+                -webkit-transform: translateX(-8px);
+                transform: translateX(-8px);
+            }
+        }
+
+        /** fade-in-right */
+        @-webkit-keyframes fade-in-right {
+            0% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in-right {
+            0% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Global variables */
+        :root {
+            /* Main colors */
+            --color-primary: #f7d145;
+            --color-primary-dark-grayish-blue: #2a2e32;
+            --color-vivid-orange: #f08d14;
+            --color-grayish-blue: #707275;
+
+            --color-secondary: #23d163;
+            --color-secondary-bright-red: #e83a30;
+            --color-secondary-soft-blue: #5e61e8;
+            --color-secondary-light-gray: #f0f2f5;
+
+            /* Official typography */
+            --fontPrimary: 'montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            font-size: 16px;
+            font-family: var(--fontPrimary);
+        }
+
+        /* Standard components (global) */
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            font-family: var(--color-primary);
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .text {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--color-primary);
+        }
+
+        .icon {
+            font-size: 25px;
+            text-decoration: none;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .logo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button {
+            width: 100%;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 13px 24px;
+            border-radius: 10px;
+            background-color: var(--color-primary);
+            border: none;
+            font-family: var(--fontPrimary);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            line-height: 1.4rem;
+            position: relative;
+        }
+
+        .button:hover {
+            background-color: #F0D882;
+            cursor: pointer;
+        }
+
+        .toast {
+            width: 400px;
+            max-width: 450px;
+            height: max-content;
+            background-color: #FFFFFFE5;
+            padding: 8px 13px;
+            border: none;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            box-shadow: 5px 0 0 0 rgba(0, 0, 0, 1);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 1rem;
+            right: 0.5rem;
+            z-index: 999;
+        }
+
+        .toast-error {
+            display: none;
+        }
+
+        .toast__title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-primary-dark-grayish-blue);
+            text-transform: uppercase;
+        }
+
+        .text__toast {
+            font-size: 12px;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .button__toast {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .button__icon {
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            color: var(--color-secondary-bright-red);
+        }
+
+        .toast__content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast__icon {
+            font-size: 40px;
+            color: var(--color-secondary-bright-red);
+        }
+
+        .animation__error {
+            -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+            animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        }
+
+
+        /* Start login*/
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('https://derick-public-dev.s3.amazonaws.com/generals/background-tools.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .alert {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+            position: absolute;
+            background: #ffffff21;
+            backdrop-filter: blur(10px);
+            inset: 0;
+        }
+
+        .alert__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: .5rem;
+            gap: .5rem;
+        }
+
+        .alert__container--image {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--color-primary-dark-grayish-blue);
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .alert__container--text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text--alert {
+            font-size: .8rem;
+            text-align: center;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .main {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            position: absolute;
+            inset: 0;
+            padding: 30px 75px;
+            background: #ffffff40;
+        }
+
+        .forms {
+            width: 100%;
+            max-width: 686px;
+            height: 100%;
+            max-height: 885px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 26px;
+            background-color: #FFFFFFE5;
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            -webkit-box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 1);
+            overflow: hidden;
+        }
+
+        .icon--back {
+            visibility: collapse;
+        }
+
+        .active {
+            visibility: visible;
+        }
+
+        .forms__logo {
+            width: 50%;
+            max-width: 529px;
+            height: 130px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .forms__form {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .title--different-color {
+            color: var(--color-primary);
+        }
+
+
+        .form {
+            height: 80%;
+            flex-direction: column;
+            gap: 15%;
+        }
+
+
+        .forms__headers {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form__container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form__container--input-link {
+            gap: 10px;
+        }
+
+        /* Deshabilitar por defecto funciones de input tipo password en navegadores */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+
+        .form__input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form__input--label {
+            font-weight: 600;
+            color: var(--color-primary-dark-grayish-blue);
+            font-size: 16px;
+        }
+
+        .form__input--field {
+            width: 100%;
+            height: 48px;
+            position: relative;
+        }
+
+        .form__input--field input {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem 0 .8rem;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid var(--color-grayish-blue);
+            border-radius: 10px;
+            font-family: var(--fontPrimary);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-primary-dark-grayish-blue);
+            position: absolute;
+        }
+
+        .form__input--field input::placeholder {
+            font-size: 14px;
+            color: var(--color-grayish-blue);
+        }
+
+        .form__input--field input:focus {
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .icon__input--field {
+            margin-left: 90%;
+            font-size: 22px;
+            color: var(--color-grayish-blue);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .icon__input--field:hover {
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .disable-password-icon {
+            display: none;
+        }
+
+
+        .form__button {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .icon--spiner {
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Individual styles forms  */
+        /* Headers*/
+        .forms__headers--reset {
+            display: flex;
+        }
+
+        /* Forms*/
+        .form-reset {
+            display: flex;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        .form-verify {
+            display: none;
+            -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        /* Form containers*/
+        .form__container--verify {
+            align-items: center;
+        }
+
+        /* Form elements*/
+        .text--input {
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--color-primary-dark-grayish-blue);
+        }
+
+        .title--medium-very {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 350px) {
+            .alert {
+                display: flex;
+            }
+
+            .main {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 351px) and (max-width: 757px) {
+            html {
+                font-size: 12px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .text {
+                font-size: 12px;
+            }
+
+            .toast__title {
+                font-size: 10px;
+            }
+
+            .toast__icon {
+                font-size: 30px;
+            }
+
+            .main {
+                align-items: center;
+                justify-content: center;
+                padding: 35px 24px;
+            }
+
+            .forms {
+                padding: 20px;
+                max-height: 638px;
+            }
+
+            .forms__logo {
+                width: 192px;
+                height: 120px;
+            }
+
+            .forms__headers {
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .form__input--label {
+                font-size: 12px;
+            }
+
+            .form__container--input {
+                gap: 5px;
+            }
+
+            .form__input--field input::placeholder {
+                font-size: 12px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Start toast error-->
+        <div class="toast toast-error" id="toast_error">
+            <div class="button__toast">
+                <h1 class="title toast__title">Notification</h1>
+                <a href="#" class="button__icon button__icon--error" id="toast_button__close">
+                    <span class="iconify" data-icon="bi:x-circle"></span>
+                </a>
+            </div>
+            <div class="toast__content">
+                <span class="iconify toast__icon" data-icon="akar-icons:chat-error"></span>
+                <p class="text text__toast" id="text_error"></p>
+            </div>
+        </div>
+        <!-- End toast error-->
+        <!--Container visible only for screen smaller than 258px-->
+        <div class="alert">
+            <div class="alert__container animation__error">
+                <div class="alert__container--image">
+                    <img class="logo" src="https://derick-public-dev.s3.amazonaws.com/logos/iso-zoom-white.png" alt="logo" />
+                </div>
+                <div class="alert__container--text">
+                    <h1 class="title">Attention</h1>
+                    <p class="text text--alert">
+                        Your device is not compatible with this version, sorry for the
+                        inconvenience.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Container visible only for screens larger than 1024px-->
+        <main class="main">
+            <!---Box forms-->
+            <div class="forms" id="forms">
+                <!-- Header-->
+                <div>
+                    <a class="icon icon--back" id="icon_back" href="">
+                        <span class="iconify" data-icon="fluent:ios-arrow-24-filled"></span></a>
+                    <div class="forms__logo">
+                         <img class="logo" src="https://derick-public-dev.s3.amazonaws.com/logos/logo-zoom-blue-dark.png" alt="Official logo" srcset="">
+                    </div>
+                </div>
+                <!-- Form-->
+                <div class="forms__form">
+                    <div class="forms__headers">
+                        <!-- Form headers reset  -->
+                        <div class="forms__headers forms__headers--reset" id="headers_reset">
+                            <h1 class="title">Reset <span class="title title--different-color">password</span></h1>
+                            <h3 class="title title--medium">Sign in</h3>
+                        </div>
+                    </div>
+                    <!-- Start form reset-->
+                    <form onsubmit="return false;" method="post" id="form__reset_password" class="form form-reset"
+                        autocomplete="off">
+                        <div class="form__container">
+                            <input type="hidden" name="_csrf" value="{{csrf_token}}" />
+                            <input type="hidden" name="ticket" value="{{ticket}}" />
+                            <input type="hidden" name="email" value="{{email}}" />
+                            <!-- Input form 1-->
+                            <div class="form__container form__container--input-link">
+                                <div class="form__input">
+                                    <label class="form__input--label">Password</label>
+                                    <div class="form__input--field">
+                                        <input type="password" id="newPassword" name="newPassword"
+                                            placeholder="Password" onkeyup="this.setAttribute('value', this.value);" />
+                                        <span class="iconify icon__input--field" id="show_password"
+                                            data-icon="mdi:eye-outline"></span>
+                                        <span class="iconify icon__input--field disable-password-icon"
+                                            id="hide_password" data-icon="mdi:eye-off"></span>
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <div>
+                                    <p class="text text--input">Must be at least 8 characters, one uppercase and one
+                                        special character</p>
+                                </div>
+                            </div>
+                            <!-- Input form 2-->
+                            <div class="form__input">
+                                <label class="form__input--label">Confirm password</label>
+                                <div class="form__input--field">
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword"
+                                        placeholder="Password" autocomplete="off"
+                                        onkeyup="this.setAttribute('value', this.value)" />
+                                    <span class="iconify icon__input--field" id="show_password_confirm"
+                                        data-icon="mdi:eye-outline"></span>
+                                    <span class="iconify icon__input--field disable-password-icon"
+                                        id="hide_password_confirm" data-icon="mdi:eye-off"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- reset in button -->
+                        <div class="form__button">
+                            <button type="submit" class="button">
+                                Reset password
+                            </button>
+                        </div>
+                    </form>
+                    <!-- End form reset -->
+                    <!-- Start form verify-->
+                    <div class="form form-verify" id="form_verify">
+                        <div>
+                            <h3 class="title title--medium-very">Your password has been successfully reset</h3>
+                        </div>
+                        <!-- Verify in button -->
+                        <div class="form__button">
+                            <a href="/" class="button">Continue</a>
+                        </div>
+                    </div>
+                    <!-- End form verify -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Auth0 script implementation -->
+    <script src="https://cdn.auth0.com/js/change-password-1.5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener("load", function () {
+
+
+        });
+    </script>
+    <script>
+        window.addEventListener("load", function () {
+            // Hidden|view password inputs
+            const inputNewPassword = document.querySelector('#newPassword');
+            const inputConfirmNewPassword = document.querySelector('#confirmNewPassword');
+
+            const showPassword = document.querySelector('#show_password');
+            const hidePassword = document.querySelector('#hide_password');
+            const showPasswordConfirm = document.querySelector('#show_password_confirm');
+            const hidePasswordConfirm = document.querySelector('#hide_password_confirm');
+
+            /*  ShowPassword inputs */
+            showPassword.addEventListener('click', function () {
+                inputNewPassword.type = 'text';
+                showPassword.style.display = 'none';
+                hidePassword.style.display = 'block';
+            });
+
+            hidePassword.addEventListener('click', function () {
+                inputNewPassword.type = 'password';
+                showPassword.style.display = 'block';
+                hidePassword.style.display = 'none';
+            });
+
+            showPasswordConfirm.addEventListener('click', function () {
+                inputConfirmNewPassword.type = 'text';
+                showPasswordConfirm.style.display = 'none';
+                hidePasswordConfirm.style.display = 'block';
+            });
+
+            hidePasswordConfirm.addEventListener('click', function () {
+                inputConfirmNewPassword.type = 'password';
+                showPasswordConfirm.style.display = 'block';
+                hidePasswordConfirm.style.display = 'none';
+            });
+
+            // Toast
+            const activeToast = document.getElementById('toast_error');
+            const toastTextError = document.getElementById('text_error');
+
+            // Active
+            const toast = text => {
+                activeToast.style.display = 'block';
+                forms.classList.add('animation__error');
+                toastTextError.innerHTML = text;
+                setTimeout(() => {
+                    activeToast.style.display = 'none';
+                    forms.classList.remove('animation__error');
+                }, 3000);
+            }
+
+
+            // Script witght Auth0
+            // Fetch form variables
+            let reset_view = $("#reset-view");
+
+            // Fetch form
+            let headersReset = $("#headers_reset");
+            let form = $("form");
+            let formVerify = $("#form_verify");
+
+            form.submit(function (e) {
+                e.preventDefault();
+                // Validation de inputs  
+                $("#form__reset_password").submit(function () {
+                    // Validation
+                    if ($("#newPassword").val().length == 0 || $("#confirmNewPassword").val().length == 0) {
+                        toast('One or more fields are empty.');
+                        return false;
+                    }
+
+                    if ($("#newPassword").val().length < 8 || $("#confirmNewPassword").val().length < 8) {
+                        toast('It must be at least 8 characters, one uppercase letter and one special character.');
+                        return false;
+                    }
+
+                    if ($("#newPassword").val() !== $("#confirmNewPassword").val()) {
+                        toast('Passwords do not match. Please try again.');
+                        return false;
+                    }
+
+                    if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,\[\]\\|\-=]).{8,}/.test($("#newPassword").val() || $("#confirmNewPassword").val())) {
+                        toast('The password must be at least 8 characters, including at least one number, one uppercase letter, one lowercase letter, and one special character.');
+                        return false;
+                    }
+
+
+                    let formData = $(this).serialize();
+                    $.ajax({
+                        url: '/lo/reset',
+                        type: 'POST',
+                        data: formData,
+                        success: function (data) {
+                            headersReset.hide();
+                            form.hide();
+                            formVerify.show();
+
+                        },
+                    })
+
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

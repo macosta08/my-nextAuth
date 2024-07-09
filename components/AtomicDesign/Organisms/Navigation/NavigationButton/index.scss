@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    .navigation-button {
+        @apply bg-primary-darkBlack h-[98px] border-t-4 border-primary;
+    }
+
+    .navigation-button__container {
+        @apply mx-auto w-4/5 flex items-center justify-between pt-3;
+    }
+
+    .navegation-button__item {
+        @apply h-full w-full flex flex-col items-center gap-1 font-montserrat font-normal text-white hover:text-primary px-2;
+    }
+}

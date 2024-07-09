@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+    .header-table {
+        @apply flex items-center justify-between;
+    }
+
+    .header-table__container {
+        @apply flex items-center justify-center gap-1;
+    }
+
+    .header-table__title {
+        @apply text-primary-darkBlack text-sm md:text-lg font-bold;
+    }
+
+    .header-table__text {
+        @apply text-primary-darkBlack text-xs md:text-sm font-medium;
+    }
+}

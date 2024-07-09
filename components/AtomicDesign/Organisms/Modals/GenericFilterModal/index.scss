@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+    .modal-filter__header {
+        @apply flex items-center justify-center gap-1;
+    }
+
+    .modal-filter__icon {
+        @apply text-2xl text-primary-darkBlack;
+    }
+
+    .modal-filter__title {
+        @apply text-primary-darkBlack text-base font-montserrat font-bold;
+    }
+
+    .modal-filter__container {
+        @apply space-y-5 h-[95%] overflow-y-auto overflow-x-hidden py-5 pl-5 px-5;
+    }
+
+    .modal-filter__icon--close-filter {
+        @apply text-primary-darkBlack hover:text-primary text-lg md:text-xl;
+    }
+
+}

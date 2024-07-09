@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer utilities {
+   
+    .layout-private {
+        @apply relative h-dvh md:h-screen hidden md:flex overflow-hidden;
+    }
+
+    .layout-private-role {
+        @apply relative h-dvh md:h-screen flex overflow-hidden;
+    }
+
+    .layout-private__sidebar {
+        @apply relative hidden md:flex h-full w-[80px] flex-shrink-0;
+    }
+
+    .layout-private__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: calc(100% - 5rem);
+        height: 100%;
+        flex-grow: 1;
+    }
+
+    .layout-private__header {
+        @apply sticky top-0 right-0 z-40;
+    }
+
+    .layout-private__footer {
+        @apply block md:hidden animate-in slide-in-from-bottom-96;
+    }
+}

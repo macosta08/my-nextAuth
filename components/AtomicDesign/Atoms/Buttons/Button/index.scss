@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    // Estilos botones
+    .button {
+        @apply h-12 min-w-36 max-w-[358px] flex items-center justify-center gap-2 cursor-pointer rounded-[10px] border text-white text-base font-montserrat font-semibold capitalize disabled:pointer-events-none px-4;
+    }
+
+    .button__primary {
+        @apply bg-primary hover:bg-[#F0D882] text-white border-primary;
+    }
+
+    .button__outline {
+        @apply bg-transparent hover:bg-secondary-gray text-primary-grayish border-primary-grayish;
+    }
+
+    .button__disabled {
+        @apply bg-[#C6C6C6] hover:bg-[#C6C6C6] border-secondary-gray text-white;
+    }
+
+    .button__added {
+        @apply bg-primary-darkBlack hover:bg-secondary-gray text-white border-primary-darkBlack;
+    }
+}

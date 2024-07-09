@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    .card-b {
+        @apply rounded-2xl hover:bg-white min-h-20;
+    }
+
+    .card-b__content {
+        @apply flex flex-col items-center justify-center p-5;
+    }
+
+    .card-b__title {
+        @apply text-base md:text-lg text-primary-grayish font-semibold whitespace-pre-line text-center leading-5;
+    }
+
+    .card-b__text {
+        @apply text-4xl text-primary-darkBlack font-bold whitespace-pre-line;
+    }
+}
